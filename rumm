@@ -1,0 +1,78 @@
+practical:Users, Groups & Permissions
+
+su -	                                       Switches to the root/login shell.
+cd /home	                                       Changes to /home directory.
+useradd soul	                                 Creates user soul (PDF shows it already existed).
+useradd bob	                                       Creates user bob.
+useradd john	                                      Creates user john.
+useradd nick	                                           Creates user nick.
+ls	                                                       Lists directory contents.
+ls -ls                                                   	Lists files with detailed information and sizes.
+passwd bob	                                                           Sets/changes password of bob.
+su - bob                                                        	Switches to user bob.
+useradd  ashwini	                                                 Creates user ashwini.
+useradd shark	                                                         Creates user shark.
+usermod -aG ashwini shark	                                        Adds shark to supplementary group ashwini.
+id shark                                                       Displays UID, GID and groups of shark.
+whoami	                                                           Displays the current username.
+who	                                                               Shows currently logged-in users.
+w	                                                               Shows logged-in users and their current activity.
+groups shark                                               	Shows groups to which shark belongs.
+last	                                                       Shows previous login history.
+userdel john	                                                    Deletes user john.
+userdel -r nick	                                                  Deletes nick and removes associated home directory/files.
+passwd -l atharv	                                                    Locks atharv's account.
+passwd -u atharv	                                                   Unlocks atharv's account.
+mkdir -p /data/atharv	Creates /data/atharv                       , including missing parent directories.
+ls -ld /data/atharv                                              	Displays directory permissions, owner and group.
+
+
+Group management
+Command	Short detail
+groupadd alexander	                                            Creates group alexander.
+getent group	                                                      Displays group database entries.
+getent group alexander	                                             Displays information about alexander group.
+ls -ltr                                                                	Lists files in detailed format, sorted by time.
+usermod -aG nick bob                                                             	Adds bob to group nick.
+id nick	                                                                 Shows UID, GID and groups of nick.
+gpasswd -d                                                                nick bob	Removes user nick from group bob.
+groups bob	                                                                 Shows groups of bob.
+groups nick                                                                  	Shows groups of nick.
+usermod -g soul nick	                                                      Changes nicks primary group to soul.
+id soul                                                                       	Displays ID/group information for soul.
+usermod -G bob,shark,nick	                                                      Shown in the PDF; it produces the usermod usage message because the username is missing.
+
+
+File permissions
+Command	Short detail
+ls -l	                                                    Shows permissions, owner, group, size and modification time.
+touch /home/atharv/atharvfile.txt	                                 Creates an empty file.
+ls -ltr /home/atharv/atharvfile.txt	                             Displays the file in detailed time-sorted format.
+touch testfile.txt	                                         Creates testfile.txt.
+chmod 444 testfile.txt	                                     Sets read-only permissions for user, group and others.
+chmod u+w testfile.txt	                                     Adds write permission for the owner.
+chmod g+w,o+x testfile.txt	                                  Adds group write and others execute permissions.
+ls -l testfile.txt	                                         Verifies the file permissions.
+ls -l /home/testfile.txt	                                      Displays permissions/details of that file.
+chown ashwini /home/atharv/atharvfile.txt	                       Changes file owner to ashwini.
+chgrp soul /home/atharv/atharvfile.txt
+
+
+
+practical 2:Password Aging
+
+| useradd user2|                  Creates user `user2`. |
+| passwd user2 |                        Sets password for `user2`. |
+| chage -l user2 |                              Lists password-aging information for `user2`. |
+| chage -m 1 -M 3 -W 1 -I 5 user2 |               Sets minimum age 1 day, maximum age 3 days, warning 1 day and inactive period 5 days. |
+| chage -E 2026-09-20 user2 |                       Sets account expiration date to 20 September 2026. |
+| chage -l user2 |                                 Verifies the changed password-aging settings. |
+
+- -m → Minimum password age
+- -M → Maximum password age
+- -W → Warning days
+- -I → Inactive days
+- -E → Account expiration date
+
+
+practical 3:
